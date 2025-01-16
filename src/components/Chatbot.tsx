@@ -54,6 +54,9 @@ const Chatbot: React.FC = () => {
 
   useEffect(() => {
     getAllChats();
+    return () => {
+        socket.off("getAllChats");
+    };
   }, []);
 
   return (
