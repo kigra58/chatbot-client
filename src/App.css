@@ -74,3 +74,17 @@ body {
     .chat-input button:hover {
     background-color: #0056b3;
     }
+
+
+
+    .cursor-pointer{
+        cursor: pointer;
+    }
+
+
+    .each-chat {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start; /* Adjust as needed */
+      }
+    

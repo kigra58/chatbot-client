@@ -1,6 +1,6 @@
-
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import SVGFile from "./SVGFile";
 
 const socket = io("http://localhost:3005");
 
@@ -8,10 +8,10 @@ interface IChatBot {
   message: string;
   response: string;
   id: string;
-  user_id:number
+  user_id: number;
 }
 
-const userId=101;
+const userId = 101;
 
 const Chatbot: React.FC = () => {
   const [inputText, setInputText] = useState("");
@@ -19,9 +19,7 @@ const Chatbot: React.FC = () => {
 
   const sendMSG = () => {
     if (inputText.trim()) {
-
-      socket.emit("message", {message:inputText ,userId});
-
+      socket.emit("message", { message: inputText, userId });
     }
   };
 
@@ -29,7 +27,15 @@ const Chatbot: React.FC = () => {
     socket.on("response", (args: IChatBot) => {
       if (!args || !args.response.length) return;
       console.log("reveived message", args);
-      setMessages((prev) => [...prev, { message: inputText, response: args.response, id: args.id, user_id:args.user_id }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          message: inputText,
+          response: args.response,
+          id: args.id,
+          user_id: args.user_id,
+        },
+      ]);
       setInputText("");
     });
 
@@ -38,22 +44,22 @@ const Chatbot: React.FC = () => {
     };
   }, []);
 
-  const getAllChats=()=>{
+  const getAllChats = () => {
     socket.emit("getAllChats", userId);
-    socket.on("chats",(args)=>{
-        console.log("all chats",args)
-        setMessages(args);
+    socket.on("chats", (args) => {
+      console.log("all chats", args);
+      setMessages(args);
     });
-  }
+  };
 
- useEffect(()=>{
+  useEffect(() => {
     getAllChats();
- },[])
+  }, []);
 
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <h2>Chatbot</h2>
+        <SVGFile name="botIcon" height="40" width="40" />
       </div>
       <div className="chat-messages">
         {messages &&
@@ -62,10 +68,24 @@ const Chatbot: React.FC = () => {
             return (
               <div key={index}>
                 {msg.message && (
-                  <div className="message bot-message">{msg?.message}</div>
+                  <div className="each-chat">
+                    <span style={{ marginRight: "10px" }}>
+                      <SVGFile height="35" width="35" name="personIcon" />
+                    </span>
+                    <div className="message bot-message align-row">
+                      {msg?.message}
+                    </div>
+                  </div>
                 )}
                 {msg.response && (
-                  <div className="message user-message">{msg?.response}</div>
+                  <div className="each-chat">
+                    <span style={{ marginRight: "10px" }}>
+                      <SVGFile height="35" width="35" name="botIcon" />
+                    </span>
+                    <div className="message user-message align-row">
+                      {msg?.response}
+                    </div>
+                  </div>
                 )}
               </div>
             );
