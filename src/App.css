@@ -88,3 +88,27 @@ body {
         align-items: flex-start; /* Adjust as needed */
       }
     
+
+
+
+    /* SCROLL BAR CSS    */
+
+    ::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+        height: 12px; /* Height of the scrollbar for horizontal scrollbars */
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f0f0f0; /* Track color */
+        border-radius: 10px; /* Rounded corners for the track */
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Thumb color */
+        border-radius: 10px; /* Rounded corners for the thumb */
+        border: 2px solid #f0f0f0; /* Adds a border around the thumb for spacing */
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background-color:  #007bff;; /* Thumb color on hover */
+    }

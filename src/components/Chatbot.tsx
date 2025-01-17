@@ -36,7 +36,8 @@ const Chatbot: React.FC = () => {
           user_id: args.user_id,
         },
       ]);
-      setInputText("");
+      const obj= document.getElementById("chat-input") as HTMLInputElement;
+      obj.value = "";
     });
 
     return () => {
@@ -99,6 +100,7 @@ const Chatbot: React.FC = () => {
           onChange={(e) => setInputText(e.target.value)}
           type="text"
           placeholder="Type your message..."
+          id="chat-input"
         />
         <button type="button" onClick={sendMSG}>
           Send
