@@ -1,114 +1,221 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    }
-    
-    .chat-container {
-    width: 400px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    }
-    
-    .chat-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    }
-    
-    .chat-messages {
-    padding: 20px;
-    height: 300px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
-    }
-    
-    .message {
-    margin-bottom: 15px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Chatbot Container */
+.chatbot-container {
+  width: 110%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+/* Chatbot Header */
+.chatbot-header {
+  background-color: #6200ea;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  opacity: 0.8;
+}
+
+/* Chatbot Body */
+.chatbot-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  padding-right: 10px; /* Add padding to avoid scrollbar overlap */
+}
+
+/* Custom Scrollbar */
+.chatbot-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background: #6200ea;
+  border-radius: 4px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb:hover {
+  background: #3700b3;
+}
+
+.message {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.bot-message {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #6200ea;
+  color: white;
+  align-self: flex-end;
+}
+
+.message p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Three-Dot Wave Animation */
+.dot-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; /* Space between dots */
+  margin-left: 8px;
+}
+
+.dot-wave-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #6200ea; /* Dot color */
+  border-radius: 50%;
+  animation: dotWaveAnimation 1.4s infinite ease-in-out;
+}
+
+.dot-wave-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot-wave-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot-wave-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotWaveAnimation {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0); /* Dots at normal position */
+  }
+  30% {
+    transform: translateY(-8px); /* Dots move up */
+  }
+}
+
+/* Chatbot Input */
+.chatbot-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chatbot-input button {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chatbot-input button:hover {
+  background-color: #3700b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .chatbot-container {
+    height: 90vh;
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .chatbot-header {
     padding: 10px;
-    border-radius: 5px;
-    max-width: 80%;
-    }
-    
-    .bot-message {
-    background-color: #e9ecef;
-    align-self: flex-start;
-    }
-    
-    .user-message {
-    background-color: #007bff;
-    color: #fff;
-    align-self: flex-end;
-    }
-    
-    .chat-input {
-    display: flex;
+  }
+
+  .chatbot-body {
     padding: 10px;
-    border-top: 1px solid #ddd;
-    }
-    
-    .chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-right: 10px;
-    }
-    
-    .chat-input button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    }
-    
-    .chat-input button:hover {
-    background-color: #0056b3;
-    }
+  }
+
+  .message {
+    max-width: 90%;
+  }
+}
 
 
+/* Three-Dot Wave Animation */
+.dot-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; /* Space between dots */
+  margin-left: 8px;
+}
 
-    .cursor-pointer{
-        cursor: pointer;
-    }
+.dot-wave-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #6200ea; /* Dot color */
+  border-radius: 50%;
+  animation: dotWaveAnimation 1.4s infinite ease-in-out;
+}
 
-
-    .each-chat {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start; /* Adjust as needed */
-      }
-    
-
-
-
-    /* SCROLL BAR CSS    */
-
-    ::-webkit-scrollbar {
-        width: 12px; /* Width of the scrollbar */
-        height: 12px; /* Height of the scrollbar for horizontal scrollbars */
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #f0f0f0; /* Track color */
-        border-radius: 10px; /* Rounded corners for the track */
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background-color: #888; /* Thumb color */
-        border-radius: 10px; /* Rounded corners for the thumb */
-        border: 2px solid #f0f0f0; /* Adds a border around the thumb for spacing */
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background-color:  #007bff;; /* Thumb color on hover */
-    }

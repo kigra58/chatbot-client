@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <div>
       {botOpen ? (
-        <Chatbot />
+        <Chatbot setBotOpen={setBotOpen} />
       ) : (
         <span onClick={() => setBotOpen(!botOpen)} className="bot-icon cursor-pointer">
           <SVGFile name="botIcon" height="60" width="60" />
