@@ -157,6 +157,14 @@ body {
   padding: 10px;
 }
 
+/* Style for the input field when focused */
+.chatbot-input input:focus {
+  background-color: #f0f0f0; /* Light gray background */
+  border-color: #6200ea; /* Purple border to match the theme */
+  outline: none; /* Remove default browser outline */
+  box-shadow: 0 0 5px rgba(98, 0, 234, 0.5); /* Optional: Add a subtle shadow */
+}
+
 .chatbot-input input {
   flex: 1;
   padding: 10px;
