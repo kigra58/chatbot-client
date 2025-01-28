@@ -17,7 +17,7 @@ body {
 
 /* Chatbot Container */
 .chatbot-container {
-  width: 110%;
+  width: 120%;
   max-width: 500px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -25,7 +25,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 65vh;
 }
 
 /* Chatbot Header */
